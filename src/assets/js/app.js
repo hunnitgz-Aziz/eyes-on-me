@@ -37,56 +37,40 @@ function getPosition(el) {
  
     el = el.offsetParent;
   }
-  return {
-    x: xPos,
-    y: yPos
-  };
-}
 
-var obj;
-var x = 0;
-var y = 0;
+  var obj = {
+  	x: xPos,
+  	y: yPos
+  }
 
-function getXY(){
-	obj = balls;
-	x += obj.offsetTop;
-	y += obj.offsetLeft;
-	console.log(obj);
-	console.log(y);
-	console.log(x);
+  return obj;
 }
 
 
-
-var position = getPosition(balls);
-let centerX = balls.offsetLeft + balls.offsetWidth / 2;
-let centerY = balls.offsetTop + balls.offsetHeight / 2;
-
-for(var i = 0; i <= 20; i++){
+for(var i = 0; i < 20; i++){
 	eyes[i] = new addEyes();
 	eyes.push(i);
-	console.log(getXY())
- 
-	// console.log(balls.length);
-	// console.log([eyes]);
-
 }
 
-
-
-document.onmousemove = function(event) {
+document.onmousemove= function(event) {
+	
+	
 	var x = event.clientX * 100 / window.innerWidth + "%";
 	var y = event.clientY * 100 / window.innerHeight + "%";
-	
-	// console.log('X coord: '+ x + ', Y coord: ' + y);
+	// var rect = event.target.getBoundingClientRect();
+	// var x = event.clientX - rect.left;
+	// var y = event.clientY - rect.top;
+	console.log('X coord: '+ x + ', Y coord: ' + y);
 
 	for(var i = 0; i < balls.length; i++) {
-		// console.log("The image is located at: " + position.x + ", " + position.y);
-		console.log(getPosition(balls[i]))
+		// console.log('Scrolled')
+		// console.log(balls[i])
+		// console.log(getPosition(balls[i]));
 		balls[i].style.left = x;
 		balls[i].style.top = y;
 		balls[i].style.transform = "translate(-"+x+", -"+y+")";
 	}
+
 }
 
 
